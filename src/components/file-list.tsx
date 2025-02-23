@@ -1,15 +1,13 @@
 import { File, Folder } from "lucide-react"
-
-interface Item {
-  name: string
-  type: "file" | "folder"
-  size?: string
-  modified?: string
-}
+import type { DriveItem, FileItem } from "~/lib/mock-data"
 
 interface FileListProps {
-  items: Item[]
+  items: DriveItem[]
   onFolderClick: (folderName: string) => void
+}
+
+function isFileItem(item: DriveItem): item is FileItem {
+  return item.type === "file"
 }
 
 export function FileList({ items, onFolderClick }: FileListProps) {
@@ -42,8 +40,8 @@ export function FileList({ items, onFolderClick }: FileListProps) {
                   </a>
                 )}
               </td>
-              <td className="px-4 py-2">{item.size || "-"}</td>
-              <td className="px-4 py-2">{item.modified || "-"}</td>
+              <td className="px-4 py-2">{isFileItem(item) ? item.size : "-"}</td>
+              <td className="px-4 py-2">{isFileItem(item) ? item.modified : "-"}</td>
             </tr>
           ))}
         </tbody>
