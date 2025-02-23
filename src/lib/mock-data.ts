@@ -1,4 +1,19 @@
-export const mockData = {
+export type FileItem = {
+  name: string
+  type: "file"
+  size: string
+  modified: string
+}
+
+export type FolderItem = {
+  name: string
+  type: "folder"
+  contents: (FileItem | FolderItem)[]
+}
+
+export type DriveItem = FileItem | FolderItem
+
+export const mockData: FolderItem = {
   name: "Root",
   type: "folder",
   contents: [
