@@ -5,7 +5,7 @@ import { env } from "~/env";
 export default {
   schema: "./src/server/db/schema.ts",
   dialect: "singlestore",
-  tablesFilter: ["db_f0b72_*"],
+  tablesFilter: ["starter-workspace_*"],
   dbCredentials: {
     host: env.SINGLESTORE_HOST,
     port: parseInt(env.SINGLESTORE_PORT),
